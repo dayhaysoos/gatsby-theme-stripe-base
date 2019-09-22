@@ -1,5 +1,5 @@
-import baseTheme from '../base-theme'
+import theme from '../theme'
 
 export default {
-  baseTheme,
+  theme,
 }

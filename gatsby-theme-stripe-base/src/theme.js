@@ -1,4 +1,4 @@
-const baseTheme = {
+export const theme = {
   space: [0, 4, 8, 1, 32],
   fonts: {
     body: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif',
@@ -48,6 +48,43 @@ const baseTheme = {
     },
     Container: {
       padding: 3,
+    },
+    h1: {
+      color: 'gray.3',
+      fontSize: 5,
+      fontWeight: 'bold',
+      lineHeight: 'heading',
+      margin: '0',
+      marginTop: 200,
+    },
+    ul: {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      listStyle: 'none',
+      padding: 0,
+      maxWidth: 'max',
+      width: 'default',
+    },
+    li: {
+      padding: 2,
+      margin: '20px 10px',
+      display: 'flex',
+      flexDirection: 'column',
+      '&:focus-within, &:hover': {
+        backgroundColor: 'primary',
+        color: 'gray.0',
+      },
+    },
+    p: {
+      color: 'gray.2',
+      textAlign: 'center',
+      fontSize: '2rem',
+      margin: '0',
+    },
+    div: {
+      color: 'primary',
     },
   },
   span: {
@@ -284,6 +321,7 @@ const baseTheme = {
     },
   },
   div: {
+    test: { color: 'red' },
     confirm: {
       width: '100%',
       display: 'flex',
@@ -303,4 +341,4 @@ const baseTheme = {
   },
 }
 
-export default baseTheme
+export default theme

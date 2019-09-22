@@ -1,13 +1,14 @@
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`
-});
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
-const axios = require("axios");
+const numeral = require('numeral')
+const axios = require('axios')
 
 const formatPrice = num => {
-  const price = (num / 100).toFixed(2);
-  return price;
-};
+  const price = (num / 100).toFixed(2)
+  return `$${price}`
+}
 
 // grab sku data from stripe api
 exports.sourceNodes = async (
@@ -15,27 +16,27 @@ exports.sourceNodes = async (
   themeOptions
 ) => {
   const result = await axios({
-    method: "GET",
-    url: "https://api.stripe.com/v1/skus",
+    method: 'GET',
+    url: 'https://api.stripe.com/v1/skus',
     headers: {
-      Authorization: `Bearer ${themeOptions.stripeSecretKey}`
-    }
-  });
+      Authorization: `Bearer ${themeOptions.stripeSecretKey}`,
+    },
+  })
 
   const plans = await axios({
-    method: "GET",
-    url: "https://api.stripe.com/v1/plans",
+    method: 'GET',
+    url: 'https://api.stripe.com/v1/plans',
     headers: {
-      Authorization: `Bearer ${themeOptions.stripeSecretKey}`
-    }
-  });
+      Authorization: `Bearer ${themeOptions.stripeSecretKey}`,
+    },
+  })
 
   if (result.errors) {
-    reporter.panic("Error loading skus", JSON.stringify(result.errors));
+    reporter.panic('Error loading skus', JSON.stringify(result.errors))
   }
 
-  const skuList = result.data;
-  const planList = plans.data;
+  const skuList = result.data
+  const planList = plans.data
 
   // format sku data to something more desirable
   // create nodeId in the process
@@ -44,69 +45,66 @@ exports.sourceNodes = async (
   skuList.data.forEach(sku => {
     const node = {
       ...sku,
+      price: formatPrice(sku.price),
       skuID: sku.id,
       id: createNodeId(`Stripe-${sku.id}`),
       name: sku.attributes.name,
       slug: sku.attributes.name,
-      image: sku.image ? sku.image : "no-image",
+      image: sku.image ? sku.image : 'no-image',
       internal: {
-        type: "StripeSku",
-        contentDigest: createContentDigest(sku)
-      }
-    };
-
+        type: 'StripeSku',
+        contentDigest: createContentDigest(sku),
+      },
+    }
     // create node with processed data
 
-    actions.createNode(node);
-  });
+    actions.createNode(node)
+  })
 
   planList.data.forEach(plan => {
     const node = {
       ...plan,
-      amount_decimal: formatPrice(plan.amount_decimal),
+      amount: formatPrice(plan.amount),
       planID: plan.id,
       id: createNodeId(`Stripe-${plan.id}`),
       name: plan.nickname,
       slug: plan.nickname,
-      image: plan.image ? plan.image : "no-image",
+      image: plan.image ? plan.image : 'no-image',
       internal: {
-        type: "StripePlan",
-        contentDigest: createContentDigest(plan)
-      }
-    };
+        type: 'StripePlan',
+        contentDigest: createContentDigest(plan),
+      },
+    }
 
     // create node with processed data
 
-    actions.createNode(node);
-  });
-};
+    actions.createNode(node)
+  })
+}
 
 // create url slug for each product
 exports.createResolvers = ({ createResolvers }, options) => {
-  const basePath = options.basePath || "/";
+  const basePath = options.basePath || '/'
 
   // Quick-and-dirty helper to convert strings into URL-friendly slugs.
   const slugify = str => {
     const slug = str
       .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)+/g, "");
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)+/g, '')
 
-    return `/${basePath}/${slug}`.replace(/\/\/+/g, "/");
-  };
+    return `/${basePath}/${slug}`.replace(/\/\/+/g, '/')
+  }
 
   // reformat "slug" value in this resolver
   createResolvers({
     StripeSku: {
       slug: {
-        resolve: source => slugify(source.name)
+        resolve: source => slugify(source.name),
       },
-      price: {
-        resolve: source => formatPrice(source.price)
-      }
-    }
-  });
-};
+    },
+  })
+}
 
 // create pages for each item
 
