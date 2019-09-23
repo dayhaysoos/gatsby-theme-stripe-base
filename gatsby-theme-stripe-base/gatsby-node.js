@@ -2,7 +2,6 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-const numeral = require('numeral')
 const axios = require('axios')
 
 const formatPrice = num => {
@@ -45,6 +44,7 @@ exports.sourceNodes = async (
   skuList.data.forEach(sku => {
     const node = {
       ...sku,
+      number_price: sku.price,
       price: formatPrice(sku.price),
       skuID: sku.id,
       id: createNodeId(`Stripe-${sku.id}`),
@@ -64,6 +64,7 @@ exports.sourceNodes = async (
   planList.data.forEach(plan => {
     const node = {
       ...plan,
+      number_amount: plan.amount,
       amount: formatPrice(plan.amount),
       planID: plan.id,
       id: createNodeId(`Stripe-${plan.id}`),

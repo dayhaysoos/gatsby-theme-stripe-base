@@ -5,6 +5,7 @@ import { jsx } from 'theme-ui'
 import { useCart } from '../context/shopping-cart'
 import AddItemButton from './add-item-button'
 import { FaImage } from 'react-icons/fa'
+import SkuImage from './sku-list/sku-image'
 
 const renderSkuList = skus => {
   return (
@@ -12,15 +13,7 @@ const renderSkuList = skus => {
       {skus.map(sku => (
         <li sx={{ variant: 'li.purchaseItem' }} key={sku.id}>
           <section sx={{ variant: 'section.itemDetails' }}>
-            {sku.image === 'no-image' ? (
-              <FaImage size={200} />
-            ) : (
-              <img
-                alt={sku.name}
-                sx={{ variant: 'img.skuList' }}
-                src={sku.image}
-              />
-            )}
+            <SkuImage size={200} image={sku.image} name={sku.name} />
             <p>{sku.name}</p>
             <p>USD:{sku.price}</p>
           </section>

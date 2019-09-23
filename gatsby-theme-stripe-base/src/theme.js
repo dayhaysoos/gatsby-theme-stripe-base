@@ -339,6 +339,36 @@ export const theme = {
       margin: '20px',
     },
   },
+  aside: {
+    rightPaneHidden: {
+      position: 'absolute',
+      top: '0px',
+      right: '-103%',
+      display: 'flex',
+      flexFlow: 'column nowrap',
+      width: '100%',
+      padding: '8px',
+      fontSize: '1.5em',
+      height: 'max',
+      transition: 'all 1s ease',
+      backgroundColor: 'gray.0',
+      zIndex: 100,
+    },
+    rightPaneShow: {
+      position: 'absolute',
+      top: '0px',
+      right: '0',
+      display: 'flex',
+      flexFlow: 'column nowrap',
+      width: '75%',
+      padding: '8px',
+      fontSize: '1.5em',
+      height: 'max',
+      transition: 'all 1s ease',
+      backgroundColor: 'gray.0',
+      zIndex: 100,
+    },
+  },
 }
 
 export default theme

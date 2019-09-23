@@ -9,25 +9,6 @@ import { FaImage } from 'react-icons/fa'
 import { Formik, Form, Field, FieldArray } from 'formik'
 import * as Yup from 'yup'
 
-const formatCartItems = (skus, checkoutData) => {
-  let arr = []
-
-  for (let i = 0; i < checkoutData.length; i++) {
-    for (let j = 0; j < skus.length; j++) {
-      if (checkoutData[i].sku === skus[j].skuID) {
-        arr.push({
-          ...checkoutData[i],
-          image: skus[j].image,
-          price: skus[j].price,
-          name: skus[j].name,
-        })
-      }
-    }
-  }
-
-  return arr
-}
-
 const CheckoutItems = () => {
   const data = useStaticQuery(graphql`
     query {
@@ -44,21 +25,18 @@ const CheckoutItems = () => {
     }
   `)
 
-  const skus = data.allStripeSku.nodes
-
   const {
     checkoutData,
     redirectToCheckout,
     deleteItem,
     handleQuantityChange,
+    detailedCart,
   } = useCart()
 
   const updateInputValue = (e, skuID) => {
     const { value } = e.target
     handleQuantityChange(parseInt(value), skuID)
   }
-
-  const formattedCheckoutData = formatCartItems(skus, checkoutData)
 
   const handleSubmit = async ({ items }) => {
     await items.forEach(item =>
@@ -70,7 +48,7 @@ const CheckoutItems = () => {
 
   return (
     <Formik
-      initialValues={{ items: formattedCheckoutData }}
+      initialValues={{ items: detailedCart }}
       enableReinitialize={true}
       onSubmit={handleSubmit}
       validateOnChange={true}
