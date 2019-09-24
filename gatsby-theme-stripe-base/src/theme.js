@@ -24,6 +24,7 @@ export const theme = {
       fontFamily: 'body',
       fontSize: 1,
       lineHeight: 'body',
+      overflowX: 'hidden',
     },
     Header: {
       color: 'gray.0',
@@ -237,9 +238,6 @@ export const theme = {
         fontSize: '18px',
         outline: 'none',
         border: 'none',
-        '&:hover': {
-          transform: 'scale(1.1)',
-        },
         '&:active': {
           backgroundColor: 'secondary',
         },
@@ -256,6 +254,8 @@ export const theme = {
     itemDetails: {
       textAlign: 'center',
       margin: '0 auto',
+      minWidth: '200px',
+      maxWidth: '250px',
     },
     buttonWrapper: {
       display: 'flex',
@@ -306,16 +306,24 @@ export const theme = {
       width: '50%',
     },
     skuList: {
-      width: '200px',
-      height: '200px',
+      width: '100%',
+      height: '100%',
+      maxWidth: '200px',
       transition: 'all .5s ease',
       '&:focus-within, &:hover': {
         transform: 'scale(1.1)',
       },
     },
+    cartList: {
+      width: '50px',
+      height: '50px',
+    },
   },
   field: {
-    checkout: {},
+    checkout: {
+      width: '30px',
+      textAlign: 'center',
+    },
     error: {
       color: 'red',
     },
@@ -336,7 +344,6 @@ export const theme = {
     closeWindow: {
       display: 'flex',
       justifyContent: 'flex-end',
-      margin: '20px',
     },
   },
   aside: {
@@ -351,7 +358,7 @@ export const theme = {
       fontSize: '1.5em',
       height: 'max',
       transition: 'all 1s ease',
-      backgroundColor: 'gray.0',
+      backgroundColor: 'background',
       zIndex: 100,
     },
     rightPaneShow: {
@@ -365,8 +372,39 @@ export const theme = {
       fontSize: '1.5em',
       height: 'max',
       transition: 'all 1s ease',
-      backgroundColor: 'gray.0',
+      backgroundColor: 'background',
       zIndex: 100,
+    },
+  },
+  cartDetails: {
+    container: {
+      color: 'primary',
+      display: 'flex',
+      justifyContent: 'space-between',
+      paddingLeft: '10px',
+      borderBottom: '1px solid gray',
+      fontSize: '12px',
+      backgroundColor: 'background',
+    },
+    inputContainer: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      width: '75px',
+    },
+    itemContainer: {
+      listStyle: 'none',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      paddingLeft: '10px',
+      borderBottom: '1px dotted lightgray',
+      color: 'primary',
+    },
+    productContainer: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      width: '40%',
+      fontSize: '14px',
     },
   },
 }

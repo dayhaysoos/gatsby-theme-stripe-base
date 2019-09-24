@@ -34,23 +34,14 @@ const ShoppingCartDetails = () => {
   return (
     <>
       <div
-        css={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          paddingLeft: '10px',
-          borderBottom: '1px solid gray',
+        sx={{
+          variant: 'cartDetails.container',
         }}
       >
-        <span css={{ fontSize: '12px' }}>Product</span>
-        <div
-          css={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            width: '150px',
-          }}
-        >
-          <span css={{ fontSize: '12px' }}>Qty</span>
-          <span css={{ fontSize: '12px' }}>Remove</span>
+        <span>Product</span>
+        <div sx={{ variant: 'cartDetails.inputContainer' }}>
+          <span>Qty</span>
+          <span>Remove</span>
         </div>
       </div>
       <Formik
@@ -78,28 +69,19 @@ const ShoppingCartDetails = () => {
                       ({ quantity, name, price, image, sku }) => (
                         <section
                           key={sku}
-                          css={{
-                            listStyle: 'none',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            paddingLeft: '10px',
-                            borderBottom: '1px dotted lightgray',
-                          }}
+                          sx={{ variant: 'cartDetails.itemContainer' }}
                         >
-                          <div
-                            css={{
-                              display: 'flex',
-                              width: '100%',
-                            }}
-                          >
-                            <SkuImage size={40} name={name} image={image} />
-                            <p css={{ fontSize: '14px', marginLeft: '20px' }}>
-                              {name}
-                            </p>
-                            <p css={{ fontSize: '14px', marginLeft: '20px' }}>
-                              {price}
-                            </p>
+                          <div sx={{ variant: 'cartDetails.productContainer' }}>
+                            <div css={{ height: '50px', width: '50px' }}>
+                              <SkuImage
+                                sx={{ variant: 'img.cartList' }}
+                                size={40}
+                                name={name}
+                                image={image}
+                              />
+                            </div>
+                            <p>{name}</p>
+                            <p>{price}</p>
                           </div>
                           <div
                             css={{
@@ -115,10 +97,6 @@ const ShoppingCartDetails = () => {
                               onChange={e => updateInputValue(e, sku)}
                               value={quantity}
                               min={0}
-                              css={{
-                                width: '30px',
-                                textAlign: 'center',
-                              }}
                             />
                             <button
                               type="submit"
@@ -132,7 +110,14 @@ const ShoppingCartDetails = () => {
                       )
                     )
                   ) : (
-                    <h1>No cart items. Sad Reacts only</h1>
+                    <div
+                      sx={{
+                        variant: 'cartDetails.container',
+                      }}
+                      css={{ justifyContent: 'center' }}
+                    >
+                      <h1>No Cart Items</h1>
+                    </div>
                   )}
                 </div>
               )}

@@ -5,20 +5,39 @@ import { useCart } from '../context/shopping-cart'
 import ShoppingCartDetails from './right-pane/shopping-cart-details'
 
 const RightPane = () => {
-  const { toggleRightMenu, handleCartClick, redirectToCheckout } = useCart()
+  const {
+    toggleRightMenu,
+    handleCartClick,
+    redirectToCheckout,
+    cartCount,
+  } = useCart()
 
   return (
-    <aside
-      sx={{
-        variant: toggleRightMenu
-          ? 'aside.rightPaneShow'
-          : 'aside.rightPaneHidden',
-      }}
-    >
-      <button onClick={handleCartClick}>Close</button>
-      <ShoppingCartDetails />
-      <button onClick={() => redirectToCheckout()}>Checkout </button>
-    </aside>
+    <div css={{ overflowY: 'scroll' }}>
+      <aside
+        sx={{
+          variant: toggleRightMenu
+            ? 'aside.rightPaneShow'
+            : 'aside.rightPaneHidden',
+        }}
+      >
+        <button
+          sx={{ variant: 'button.checkout.closeWindow' }}
+          onClick={handleCartClick}
+        >
+          Close Menu
+        </button>
+        <ShoppingCartDetails />
+        <button
+          sx={{
+            variant: cartCount > 0 ? 'button.checkout' : 'button.disabled',
+          }}
+          onClick={() => redirectToCheckout()}
+        >
+          Checkout{' '}
+        </button>
+      </aside>
+    </div>
   )
 }
 

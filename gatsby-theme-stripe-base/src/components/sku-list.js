@@ -13,7 +13,9 @@ const renderSkuList = skus => {
       {skus.map(sku => (
         <li key={sku.id} sx={{ variant: 'li.purchaseItem' }}>
           <section sx={{ variant: 'section.itemDetails' }}>
-            <SkuImage size={200} image={sku.image} name={sku.name} />
+            <div css={{ maxHeight: '200px' }}>
+              <SkuImage size={200} image={sku.image} name={sku.name} />
+            </div>
             <p>{sku.name}</p>
             <p>USD:{sku.price}</p>
           </section>
