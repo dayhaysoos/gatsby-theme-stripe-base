@@ -18,7 +18,9 @@ const ShoppingCartDetails = () => {
 
   const updateInputValue = (e, skuID) => {
     const { value } = e.target
-    handleQuantityChange(parseInt(value), skuID)
+    parseInt(value) === 0
+      ? deleteItem(skuID)
+      : handleQuantityChange(parseInt(value), skuID)
   }
 
   const handleSubmit = async ({ items }) => {
