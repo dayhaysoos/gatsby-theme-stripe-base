@@ -9,7 +9,7 @@ const AddItemButton = ({ sku }) => {
 
   const handleClick = e => {
     e.preventDefault()
-    addItem({ skuID, quantity: 1, test: 'test' })
+    addItem({ skuID, quantity: 1 })
   }
 
   return (

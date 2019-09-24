@@ -63,6 +63,7 @@ const CheckoutItems = () => {
       })}
       render={({ values, errors, dirty, touched }) => (
         <Form>
+          {console.log('wet', values)}
           <FieldArray
             name={'items'}
             render={() => (

@@ -11,7 +11,7 @@ const renderSkuList = skus => {
   return (
     <ul sx={{ variant: 'ul.skuList' }}>
       {skus.map(sku => (
-        <li sx={{ variant: 'li.purchaseItem' }} key={sku.id}>
+        <li key={sku.id} sx={{ variant: 'li.purchaseItem' }}>
           <section sx={{ variant: 'section.itemDetails' }}>
             <SkuImage size={200} image={sku.image} name={sku.name} />
             <p>{sku.name}</p>

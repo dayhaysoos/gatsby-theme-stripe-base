@@ -57,6 +57,8 @@ const formatCart = checkoutData => {
 }
 
 const updateQuantity = (quantity, skuID, skus) => {
+  quantity = isNaN(quantity) ? 0 : quantity
+
   return {
     ...skus,
     [skuID]: quantity,
