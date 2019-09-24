@@ -321,7 +321,7 @@ export const theme = {
   },
   field: {
     checkout: {
-      width: '30px',
+      width: '50px',
       textAlign: 'center',
     },
     error: {
@@ -374,6 +374,7 @@ export const theme = {
       transition: 'all 1s ease',
       backgroundColor: 'background',
       zIndex: 100,
+      color: 'primary',
     },
   },
   cartDetails: {

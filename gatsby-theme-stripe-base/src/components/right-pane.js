@@ -13,7 +13,7 @@ const RightPane = () => {
   } = useCart()
 
   return (
-    <div css={{ overflowY: 'scroll' }}>
+    <div css={{ overflowY: 'scroll', display: 'flex', flexDiretion: 'row' }}>
       <aside
         sx={{
           variant: toggleRightMenu
@@ -21,21 +21,27 @@ const RightPane = () => {
             : 'aside.rightPaneHidden',
         }}
       >
-        <button
-          sx={{ variant: 'button.checkout.closeWindow' }}
-          onClick={handleCartClick}
-        >
-          Close Menu
-        </button>
         <ShoppingCartDetails />
-        <button
-          sx={{
-            variant: cartCount > 0 ? 'button.checkout' : 'button.disabled',
+        <div
+          css={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
-          onClick={() => redirectToCheckout()}
         >
-          Checkout{' '}
-        </button>
+          <button sx={{ variant: 'button.checkout' }} onClick={handleCartClick}>
+            Close Menu
+          </button>
+          <button
+            sx={{
+              variant: cartCount > 0 ? 'button.checkout' : 'button.disabled',
+            }}
+            onClick={() => redirectToCheckout()}
+          >
+            Checkout{' '}
+          </button>
+        </div>
       </aside>
     </div>
   )
