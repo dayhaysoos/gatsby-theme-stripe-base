@@ -1,6 +1,11 @@
 {
   "name": "gatsby-theme-stripe-base",
   "version": "0.1.0",
+  "author": {
+    "name": "Nick DeJesus",
+    "url": "https://www.twitter.com/dayhaysoos",
+    "email": "ndejesus1227@gmail.com"
+  },
   "scripts": {
     "build": "gatsby build",
     "clean": "gatsby clean",
@@ -19,10 +24,13 @@
   "dependencies": {
     "@emotion/core": "^10.0.17",
     "@emotion/styled": "^10.0.17",
+    "@material-ui/core": "^4.4.3",
+    "@material-ui/styles": "^4.4.3",
     "@mdx-js/react": "^1.4.5",
     "axios": "^0.19.0",
     "dotenv": "^8.1.0",
     "formik": "^1.5.8",
+    "gatsby-plugin-material-ui": "^2.1.6",
     "gatsby-plugin-page-creator": "^2.1.17",
     "gatsby-plugin-stripe": "^1.2.3",
     "gatsby-plugin-theme-ui": "^0.2.41",

@@ -6,6 +6,7 @@ import SkuImage from '../sku-list/sku-image'
 import { FaWindowClose } from 'react-icons/fa'
 import { Formik, FieldArray, Field, Form } from 'formik'
 import * as Yup from 'yup'
+import Button from '@material-ui/core/Button'
 
 const ShoppingCartDetails = () => {
   const {
@@ -98,13 +99,13 @@ const ShoppingCartDetails = () => {
                               value={quantity}
                               min={0}
                             />
-                            <button
+                            <Button
                               type="submit"
                               onClick={() => deleteItem(sku)}
                               sx={{ variant: 'button.checkout.closeWindow' }}
                             >
                               <FaWindowClose size={30} />
-                            </button>
+                            </Button>
                           </div>
                         </section>
                       )
