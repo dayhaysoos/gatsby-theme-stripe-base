@@ -155,15 +155,9 @@ export const useCart = () => {
     cartDetails,
   } = cart
 
-  let stripe
-
   const isBrowser = typeof window !== 'undefined'
 
-  if (!isBrowser) {
-    return null
-  } else {
-    stripe = window.Stripe(stripePublicKey)
-  }
+  let stripe = isBrowser ? (stripe = window.Stripe(stripePublicKey)) : null
 
   const checkoutData = formatCart(skus)
 
