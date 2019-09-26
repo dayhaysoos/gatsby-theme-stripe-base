@@ -1,15 +1,23 @@
-require("dotenv").config();
+require('dotenv').config()
 
 module.exports = {
   plugins: [
-    "gatsby-plugin-theme-ui",
-    "gatsby-plugin-stripe",
+    'gatsby-plugin-theme-ui',
+    'gatsby-plugin-stripe',
+    {
+      resolve: `gatsby-plugin-material-ui`,
+      options: {
+        stylesProvider: {
+          injectFirst: true,
+        },
+      },
+    },
     {
       resolve: `gatsby-plugin-page-creator`,
       options: {
-        path: `${__dirname}/src/pages`
-      }
-    }
+        path: `${__dirname}/src/pages`,
+      },
+    },
   ],
   siteMetadata: {
     title: `Gatsby Theme Stripe Base`,
@@ -18,8 +26,8 @@ module.exports = {
     social: [
       {
         name: `twitter`,
-        url: `https://twitter.com/resilientcoders`
-      }
-    ]
-  }
-};
+        url: `https://twitter.com/resilientcoders`,
+      },
+    ],
+  },
+}

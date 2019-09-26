@@ -2,6 +2,7 @@
 import React from 'react'
 import { useCart } from '../context/shopping-cart'
 import { jsx } from 'theme-ui'
+import Button from '@material-ui/core/Button'
 
 const AddItemButton = ({ sku }) => {
   const { skuID } = sku
@@ -13,9 +14,13 @@ const AddItemButton = ({ sku }) => {
   }
 
   return (
-    <button sx={{ variant: 'button.cart' }} onClick={handleClick}>
+    <Button
+      variant={'contained'}
+      sx={{ variant: 'button.cart' }}
+      onClick={handleClick}
+    >
       Add to Cart
-    </button>
+    </Button>
   )
 }
 

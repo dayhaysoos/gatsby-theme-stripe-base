@@ -3,6 +3,7 @@ import React from 'react'
 import { jsx } from 'theme-ui'
 import { useCart } from '../context/shopping-cart'
 import ShoppingCartDetails from './right-pane/shopping-cart-details'
+import Button from '@material-ui/core/Button'
 
 const RightPane = () => {
   const {
@@ -26,21 +27,27 @@ const RightPane = () => {
           css={{
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: 'center',
+            justifyContent: 'space-evenly',
             alignItems: 'center',
           }}
         >
-          <button sx={{ variant: 'button.checkout' }} onClick={handleCartClick}>
-            Close Menu
-          </button>
-          <button
+          <Button
+            variant={'contained'}
+            color={'primary'}
+            sx={{ variant: 'button.cart' }}
+            onClick={handleCartClick}
+          >
+            Close
+          </Button>
+          <Button
+            variant={'contained'}
             sx={{
-              variant: cartCount > 0 ? 'button.checkout' : 'button.disabled',
+              variant: cartCount > 0 ? 'button.cart' : 'button.disabled',
             }}
             onClick={() => redirectToCheckout()}
           >
             Checkout{' '}
-          </button>
+          </Button>
         </div>
       </aside>
     </div>

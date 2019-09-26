@@ -2,10 +2,11 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { useCart } from '../../context/shopping-cart'
-import SkuImage from '../sku-list/sku-image'
+import CheckoutImage from '../right-pane/checkout-image'
 import { FaWindowClose } from 'react-icons/fa'
 import { Formik, FieldArray, Field, Form } from 'formik'
 import * as Yup from 'yup'
+import Button from '@material-ui/core/Button'
 
 const ShoppingCartDetails = () => {
   const {
@@ -72,10 +73,10 @@ const ShoppingCartDetails = () => {
                           sx={{ variant: 'cartDetails.itemContainer' }}
                         >
                           <div sx={{ variant: 'cartDetails.productContainer' }}>
-                            <div css={{ height: '50px', width: '50px' }}>
-                              <SkuImage
-                                sx={{ variant: 'img.cartList' }}
-                                size={40}
+                            <div sx={{ variant: 'img.checkout' }}>
+                              <CheckoutImage
+                                sx={{ variant: 'img.skuList' }}
+                                size={50}
                                 name={name}
                                 image={image}
                               />
@@ -98,13 +99,13 @@ const ShoppingCartDetails = () => {
                               value={quantity}
                               min={0}
                             />
-                            <button
+                            <Button
                               type="submit"
                               onClick={() => deleteItem(sku)}
                               sx={{ variant: 'button.checkout.closeWindow' }}
                             >
                               <FaWindowClose size={30} />
-                            </button>
+                            </Button>
                           </div>
                         </section>
                       )
@@ -125,7 +126,7 @@ const ShoppingCartDetails = () => {
           </Form>
         )}
       />
-      <span css={{ textAlign: 'center' }}>{total}</span>
+      <span css={{ textAlign: 'center', marginBottom: '20px' }}>{total}</span>
     </>
   )
 }
