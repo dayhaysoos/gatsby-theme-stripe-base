@@ -7,7 +7,6 @@ const formatPrice = num => {
 }
 
 const getTotal = cartItems => {
-  console.log('cart items', cartItems)
   const total = cartItems.reduce(
     (acc, current) => acc + current.number_price * current.quantity,
     0

@@ -3,8 +3,15 @@ require('dotenv').config()
 module.exports = {
   plugins: [
     'gatsby-plugin-theme-ui',
-    `gatsby-plugin-material-ui`,
     'gatsby-plugin-stripe',
+    {
+      resolve: `gatsby-plugin-material-ui`,
+      options: {
+        stylesProvider: {
+          injectFirst: true,
+        },
+      },
+    },
     {
       resolve: `gatsby-plugin-page-creator`,
       options: {

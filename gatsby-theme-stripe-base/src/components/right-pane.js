@@ -27,22 +27,22 @@ const RightPane = () => {
           css={{
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: 'center',
+            justifyContent: 'space-evenly',
             alignItems: 'center',
           }}
         >
           <Button
             variant={'contained'}
             color={'primary'}
-            sx={{ variant: 'button.checkout' }}
+            sx={{ variant: 'button.cart' }}
             onClick={handleCartClick}
           >
-            Close Menu
+            Close
           </Button>
           <Button
             variant={'contained'}
             sx={{
-              variant: cartCount > 0 ? 'button.checkout' : 'button.disabled',
+              variant: cartCount > 0 ? 'button.cart' : 'button.disabled',
             }}
             onClick={() => redirectToCheckout()}
           >
