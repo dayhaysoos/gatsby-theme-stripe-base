@@ -351,7 +351,7 @@ export const theme = {
     rightPaneHidden: {
       position: 'absolute',
       top: '0px',
-      right: '-103%',
+      right: '-107%',
       display: 'flex',
       flexFlow: 'column nowrap',
       width: '100%',
