@@ -361,6 +361,9 @@ export const theme = {
       boxShadow: '0 20px 10px',
       zIndex: 100,
       overflow: 'hidden',
+      '@media (max-width: 680px)': {
+        display: 'none',
+      },
     },
     rightPaneShow: {
       position: 'absolute',
