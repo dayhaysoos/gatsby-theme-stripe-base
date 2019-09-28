@@ -46,7 +46,7 @@ const RightPane = () => {
             }}
             onClick={() => redirectToCheckout()}
           >
-            Checkout{' '}
+            Checkout
           </Button>
         </div>
       </aside>
