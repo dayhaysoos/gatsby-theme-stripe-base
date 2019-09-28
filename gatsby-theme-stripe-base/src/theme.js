@@ -362,7 +362,7 @@ export const theme = {
       zIndex: 100,
       overflow: 'hidden',
       '@media (max-width: 680px)': {
-        display: 'none',
+        visibility: 'hidden',
       },
     },
     rightPaneShow: {

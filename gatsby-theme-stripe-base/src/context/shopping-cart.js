@@ -120,7 +120,7 @@ const reducer = (cart, action) => {
 
 export const CartContext = createContext()
 
-export const CartProvider = ({ children, stripePublicKey }) => {
+export const CartProvider = ({ children, stripe }) => {
   const skuStorage =
     typeof window !== 'undefined'
       ? JSON.parse(localStorage.getItem('skus'))
@@ -132,7 +132,7 @@ export const CartProvider = ({ children, stripePublicKey }) => {
         skus: skuStorage ? skuStorage : {},
         toggleRightMenu: false,
         cartDetails: [],
-        stripePublicKey,
+        stripe,
       })}
     >
       {children}
@@ -161,17 +161,7 @@ export const useCart = () => {
 
   const [cart, dispatch] = useContext(CartContext)
 
-  const {
-    skus,
-    stripePublicKey,
-    lastClicked,
-    toggleRightMenu,
-    cartDetails,
-  } = cart
-
-  const isBrowser = typeof window !== 'undefined'
-
-  let stripe = isBrowser ? (stripe = window.Stripe(stripePublicKey)) : null
+  const { skus, stripe, lastClicked, toggleRightMenu, cartDetails } = cart
 
   const checkoutData = formatCart(skus)
 
