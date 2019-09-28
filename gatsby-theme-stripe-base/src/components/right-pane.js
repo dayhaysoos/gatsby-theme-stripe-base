@@ -40,6 +40,7 @@ const RightPane = () => {
             Close
           </Button>
           <Button
+            arial-label={`Go to Stripe Checkout`}
             variant={'contained'}
             sx={{
               variant: cartCount > 0 ? 'button.cart' : 'button.disabled',

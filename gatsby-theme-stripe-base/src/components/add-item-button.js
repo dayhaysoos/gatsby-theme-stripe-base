@@ -5,7 +5,7 @@ import { jsx } from 'theme-ui'
 import Button from '@material-ui/core/Button'
 
 const AddItemButton = ({ sku }) => {
-  const { skuID } = sku
+  const { skuID, name } = sku
   const { addItem } = useCart()
 
   const handleClick = e => {
@@ -15,6 +15,7 @@ const AddItemButton = ({ sku }) => {
 
   return (
     <Button
+      arial-label={`Add ${name} to cart`}
       variant={'contained'}
       sx={{ variant: 'button.cart' }}
       onClick={handleClick}

@@ -100,6 +100,7 @@ const ShoppingCartDetails = () => {
                               min={0}
                             />
                             <Button
+                              arial-label={`Remove ${name} from cart`}
                               type="submit"
                               onClick={() => deleteItem(sku)}
                               sx={{ variant: 'button.checkout.closeWindow' }}
