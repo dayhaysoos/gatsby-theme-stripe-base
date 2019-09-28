@@ -346,7 +346,7 @@ export const theme = {
   },
   aside: {
     rightPaneHidden: {
-      position: 'absolute',
+      position: 'fixed',
       top: '0px',
       right: '-107%',
       display: 'flex',
@@ -366,7 +366,7 @@ export const theme = {
       },
     },
     rightPaneShow: {
-      position: 'absolute',
+      position: 'fixed',
       top: '0px',
       right: '0',
       display: 'flex',
