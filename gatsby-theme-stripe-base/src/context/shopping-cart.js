@@ -76,17 +76,25 @@ const reducer = (cart, action) => {
 
   switch (action.type) {
     case 'addItem':
+      localStorage.setItem('skus', JSON.stringify(buildCart(skus, action.sku)))
       return {
         ...cart,
         skus: buildCart(skus, action.sku),
       }
     case 'handleQuantityChange':
-      updateQuantity(action.quantity, action.skuID, skus)
+      localStorage.setItem(
+        'skus',
+        JSON.stringify(updateQuantity(action.quantity, action.skuID, skus))
+      )
       return {
         ...cart,
         skus: updateQuantity(action.quantity, action.skuID, skus),
       }
     case 'delete':
+      localStorage.setItem(
+        'skus',
+        JSON.stringify(removeSku(action.skuID, skus))
+      )
       return {
         ...cart,
         skus: removeSku(action.skuID, skus),
@@ -112,19 +120,22 @@ const reducer = (cart, action) => {
 
 export const CartContext = createContext()
 
-export const CartProvider = ({ children, stripePublicKey }) => (
-  <CartContext.Provider
-    value={useReducer(reducer, {
-      lastClicked: '',
-      skus: {},
-      toggleRightMenu: false,
-      cartDetails: [],
-      stripePublicKey,
-    })}
-  >
-    {children}
-  </CartContext.Provider>
-)
+export const CartProvider = ({ children, stripePublicKey }) => {
+  const skuStorage = JSON.parse(localStorage.getItem('skus'))
+  return (
+    <CartContext.Provider
+      value={useReducer(reducer, {
+        lastClicked: '',
+        skus: skuStorage ? skuStorage : {},
+        toggleRightMenu: false,
+        cartDetails: [],
+        stripePublicKey,
+      })}
+    >
+      {children}
+    </CartContext.Provider>
+  )
+}
 
 export const useCart = () => {
   const data = useStaticQuery(graphql`
@@ -166,12 +177,13 @@ export const useCart = () => {
     0
   )
 
-  const detailedCart = formatDetailedCart(itemReference, checkoutData)
+  const detailedCart = formatDetailedCart(
+    itemReference,
+    checkoutData,
+    cartDetails
+  )
 
   const total = formatPrice(getTotal(detailedCart))
-
-  const storeCartDetails = cartDetails =>
-    dispatch({ type: 'storeCartDetails', cartDetails })
 
   const addItem = sku => dispatch({ type: 'addItem', sku })
 
@@ -209,7 +221,6 @@ export const useCart = () => {
     storeLastClicked,
     toggleRightMenu,
     handleCartClick,
-    storeCartDetails,
     cartDetails,
     detailedCart,
     total,
