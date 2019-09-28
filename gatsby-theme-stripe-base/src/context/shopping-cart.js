@@ -121,7 +121,10 @@ const reducer = (cart, action) => {
 export const CartContext = createContext()
 
 export const CartProvider = ({ children, stripePublicKey }) => {
-  const skuStorage = JSON.parse(localStorage.getItem('skus'))
+  const skuStorage =
+    typeof window !== 'undefined'
+      ? JSON.parse(localStorage.getItem('skus'))
+      : null
   return (
     <CartContext.Provider
       value={useReducer(reducer, {
