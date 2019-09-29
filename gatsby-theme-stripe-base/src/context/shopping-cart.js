@@ -157,6 +157,16 @@ export const useCart = () => {
     }
   `)
 
+  const images = graphql`
+    query {
+      allStripeSku(filter: { name: { eq: "Dope Sneakers" } }) {
+        nodes {
+          image
+        }
+      }
+    }
+  `
+
   const itemReference = data.allStripeSku.nodes
 
   const [cart, dispatch] = useContext(CartContext)
