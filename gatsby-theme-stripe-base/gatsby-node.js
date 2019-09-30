@@ -15,15 +15,39 @@ exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
 
   createTypes(`
-    type StripeImage implements Node {
-      image: Image
-    }
 
-    type Image {
-      title: String!
-      image: String
-      imageAlt: String
-    }
+  type Attribute implements Node {
+    id: ID!
+    name: String!
+  }
+
+  type MetaData implements Node {
+    id: ID!
+  }
+
+  type StripeSku implements Node {
+    id: ID!
+    object: String
+    attributes: Attribute
+    currencty: String!
+    image: String
+    metadata: MetaData!
+    price: String!
+    product: String!
+    skuID: String!
+    name: String!
+    slug: String!
+  }
+  
+
+
+  type StripeImage implements Node {
+    image: Image
+  }
+
+  type Image {
+    image: String
+  }
   `)
 }
 
@@ -35,6 +59,7 @@ exports.onCreateNode = async ({
   createNodeId,
 }) => {
   // For all StripeImage nodes that have a featured image url, call createRemoteFileNode
+
   if (node.internal.type === 'StripeSku' && node.image !== null) {
     let fileNode = await createRemoteFileNode({
       url: node.image, // string that points to the URL of the image
@@ -47,7 +72,7 @@ exports.onCreateNode = async ({
 
     // if the file was created, attach the new node to the parent node
     if (fileNode) {
-      node.featuredImg___NODE = fileNode.id
+      node.image___NODE = fileNode.id
     }
   }
 }
@@ -99,7 +124,6 @@ exports.sourceNodes = async (
       },
     }
     // create node with processed data
-
     actions.createNode(node)
   })
 

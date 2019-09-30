@@ -40,7 +40,6 @@ const SkuList = () => {
           price
           currency
           slug
-          image
           skuID
         }
       }

@@ -4,9 +4,15 @@ module.exports = {
   plugins: [
     'gatsby-plugin-theme-ui',
     'gatsby-plugin-stripe',
-    'gatsby-source-filesystem',
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'image',
+        path: `${__dirname}/src/pages/`,
+      },
+    },
     {
       resolve: `gatsby-plugin-material-ui`,
       options: {
