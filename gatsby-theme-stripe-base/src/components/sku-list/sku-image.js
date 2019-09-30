@@ -2,6 +2,8 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { FaImage } from 'react-icons/fa'
+import Img from 'gatsby-image'
+import { graphql } from 'gatsby'
 
 // const breakpoints = [500]
 
@@ -10,7 +12,7 @@ import { FaImage } from 'react-icons/fa'
 const SkuImage = ({ image, name, size }) => {
   return (
     <>
-      {image === 'no-image' ? (
+      {image === null ? (
         <FaImage
           // css={{
           //   [mq[0]]: {
@@ -20,7 +22,7 @@ const SkuImage = ({ image, name, size }) => {
           size={size}
         />
       ) : (
-        <img
+        <Img
           // css={{
           //   [mq[0]]: {
           //     display: 'none',
@@ -28,7 +30,7 @@ const SkuImage = ({ image, name, size }) => {
           // }}
           alt={name}
           sx={{ variant: 'img.skuList' }}
-          src={image}
+          fixed={image.childImageSharp.fixed}
         />
       )}
     </>

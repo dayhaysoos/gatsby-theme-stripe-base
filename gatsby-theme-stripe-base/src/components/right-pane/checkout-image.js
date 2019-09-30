@@ -2,14 +2,19 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { FaImage } from 'react-icons/fa'
+import Img from 'gatsby-image'
 
 const CheckoutImage = ({ image, name, size }) => {
   return (
     <>
-      {image === 'no-image' ? (
+      {image === null ? (
         <FaImage sx={{ variant: 'img.checkout' }} size={size} />
       ) : (
-        <img alt={name} sx={{ variant: 'img.checkout' }} src={image} />
+        <Img
+          alt={name}
+          sx={{ variant: 'img.checkout' }}
+          fixed={image.childImageSharp.fixed}
+        />
       )}
     </>
   )
