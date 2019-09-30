@@ -14,8 +14,6 @@ const renderSkuList = skus => {
       {skus.map(sku => {
         const { localImage, name, skuID, price } = sku
 
-        console.log('local', localImage)
-
         return (
           <CardContent key={skuID} sx={{ variant: 'li.purchaseItem' }}>
             <section sx={{ variant: 'section.itemDetails' }}>
