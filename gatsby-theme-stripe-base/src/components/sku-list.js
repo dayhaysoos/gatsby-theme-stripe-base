@@ -11,20 +11,26 @@ import CardContent from '@material-ui/core/CardContent'
 const renderSkuList = skus => {
   return (
     <Card sx={{ variant: 'ul.skuList' }}>
-      {skus.map(sku => (
-        <CardContent key={sku.skuID} sx={{ variant: 'li.purchaseItem' }}>
-          <section sx={{ variant: 'section.itemDetails' }}>
-            <div css={{ maxHeight: '200px', height: '200px' }}>
-              <SkuImage size={200} image={sku.image} name={sku.name} />
-            </div>
-            <p>{sku.name}</p>
-            <p>{sku.price}</p>
-          </section>
-          <section sx={{ variant: 'section.buttonWrapper' }}>
-            <AddItemButton sku={sku} />
-          </section>
-        </CardContent>
-      ))}
+      {skus.map(sku => {
+        const { localImage, name, skuID, price } = sku
+
+        console.log('local', localImage)
+
+        return (
+          <CardContent key={skuID} sx={{ variant: 'li.purchaseItem' }}>
+            <section sx={{ variant: 'section.itemDetails' }}>
+              <div css={{ maxHeight: '200px', height: '200px' }}>
+                <SkuImage size={200} image={localImage} name={name} />
+              </div>
+              <p>{name}</p>
+              <p>{price}</p>
+            </section>
+            <section sx={{ variant: 'section.buttonWrapper' }}>
+              <AddItemButton sku={sku} />
+            </section>
+          </CardContent>
+        )
+      })}
     </Card>
   )
 }
@@ -41,6 +47,22 @@ const SkuList = () => {
           currency
           slug
           skuID
+          localImage {
+            childImageSharp {
+              fixed(height: 200, width: 200) {
+                base64
+                tracedSVG
+                aspectRatio
+                width
+                height
+                src
+                srcSet
+                srcWebp
+                srcSetWebp
+                originalName
+              }
+            }
+          }
         }
       }
     }

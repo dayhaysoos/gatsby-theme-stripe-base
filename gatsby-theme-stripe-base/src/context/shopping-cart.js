@@ -37,7 +37,7 @@ const formatDetailedCart = (skus, checkoutData) => {
       if (checkoutData[i].sku === skus[j].skuID) {
         arr.push({
           ...checkoutData[i],
-          image: skus[j].image,
+          localImage: skus[j].localImage,
           price: skus[j].price,
           name: skus[j].name,
           number_price: skus[j].number_price,
@@ -150,8 +150,23 @@ export const useCart = () => {
           number_price
           currency
           slug
-          image
           skuID
+          localImage {
+            childImageSharp {
+              fixed(height: 50, width: 50) {
+                base64
+                tracedSVG
+                aspectRatio
+                width
+                height
+                src
+                srcSet
+                srcWebp
+                srcSetWebp
+                originalName
+              }
+            }
+          }
         }
       }
     }

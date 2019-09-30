@@ -67,7 +67,7 @@ const ShoppingCartDetails = () => {
                 <div>
                   {values.items && values.items.length > 0 ? (
                     values.items.map(
-                      ({ quantity, name, price, image, sku }) => (
+                      ({ quantity, name, price, localImage, sku }) => (
                         <section
                           key={sku}
                           sx={{ variant: 'cartDetails.itemContainer' }}
@@ -78,7 +78,7 @@ const ShoppingCartDetails = () => {
                                 sx={{ variant: 'img.skuList' }}
                                 size={50}
                                 name={name}
-                                image={image}
+                                image={localImage}
                               />
                             </div>
                             <p>{name}</p>

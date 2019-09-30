@@ -72,7 +72,7 @@ exports.onCreateNode = async ({
 
     // if the file was created, attach the new node to the parent node
     if (fileNode) {
-      node.image___NODE = fileNode.id
+      node.localImage___NODE = fileNode.id
     }
   }
 }

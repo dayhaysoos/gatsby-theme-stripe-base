@@ -10,10 +10,9 @@ import { graphql } from 'gatsby'
 // const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
 
 const SkuImage = ({ image, name, size }) => {
-  console.log('IMAGE', image)
   return (
     <>
-      {image === 'no-image' ? (
+      {image === null ? (
         <FaImage
           // css={{
           //   [mq[0]]: {
@@ -23,7 +22,7 @@ const SkuImage = ({ image, name, size }) => {
           size={size}
         />
       ) : (
-        <img
+        <Img
           // css={{
           //   [mq[0]]: {
           //     display: 'none',
@@ -31,7 +30,7 @@ const SkuImage = ({ image, name, size }) => {
           // }}
           alt={name}
           sx={{ variant: 'img.skuList' }}
-          src={image}
+          fixed={image.childImageSharp.fixed}
         />
       )}
     </>
