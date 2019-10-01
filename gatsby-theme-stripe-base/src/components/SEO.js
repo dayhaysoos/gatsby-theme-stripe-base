@@ -48,7 +48,6 @@ const SEO = (
         url: `${siteUrl}${pathname || '/'}`,
         socialAccounts: socialAccounts || defaultSocialAccounts,
       }
-      console.log('seo', seo)
       return (
         <>
           <Helmet title={seo.title} titleTemplate={titleTemplate}>
