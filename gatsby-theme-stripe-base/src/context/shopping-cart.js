@@ -174,6 +174,8 @@ export const useCart = () => {
 
   const itemReference = data.allStripeSku.nodes
 
+  let storageReference = JSON.parse(localStorage.getItem('skus'))
+
   const [cart, dispatch] = useContext(CartContext)
 
   const { skus, stripe, lastClicked, toggleRightMenu, cartDetails } = cart
@@ -184,6 +186,18 @@ export const useCart = () => {
     (acc, current) => acc + current.quantity,
     0
   )
+
+  Object.keys(storageReference).forEach(storageSku => {
+    itemReference.forEach(
+      itemSku =>
+        !itemSku.skuID.includes(storageSku) &&
+        delete storageReference[storageSku]
+    )
+  })
+
+  localStorage.setItem('skus', JSON.stringify(storageReference))
+
+  console.log(storageReference)
 
   const detailedCart = formatDetailedCart(
     itemReference,
