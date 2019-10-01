@@ -197,8 +197,6 @@ export const useCart = () => {
 
   localStorage.setItem('skus', JSON.stringify(storageReference))
 
-  console.log(storageReference)
-
   const detailedCart = formatDetailedCart(
     itemReference,
     checkoutData,
